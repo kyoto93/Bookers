@@ -30,10 +30,11 @@
 <%= form_for(@book, url: '/books') do |f| %>
 
     <% if @book .errors.any? %>
-     <h2>2 errors prohibited this book from being saved:</h2>
+     <h2><%= @book.errors.count %> errors prohibited this book from being saved:</h2>
      <ul>
-     	<li>Title can't be blank</li>
-     	<li>Body can't be blank</li>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
      </ul>
     <% end %>
 
